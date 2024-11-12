@@ -1,5 +1,3 @@
-
-
 import 'package:app_meteorologia/screens/weather.dart';
 import 'package:app_meteorologia/utils/navigator.dart';
 import 'package:flutter/material.dart';

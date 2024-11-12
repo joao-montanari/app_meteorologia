@@ -1,10 +1,8 @@
-
-
 import 'package:app_meteorologia/models/weather.dart';
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatefulWidget {
-  const CustomCard({
+class WeatherCard extends StatefulWidget {
+  const WeatherCard({
     super.key,
     required this.weather,
   });
@@ -12,14 +10,15 @@ class CustomCard extends StatefulWidget {
   final Weather weather;
 
   @override
-  State<CustomCard> createState() => _CustomCard();
+  State<WeatherCard> createState() => _WeatherCard();
 }
 
-class _CustomCard extends State<CustomCard> {
+class _WeatherCard extends State<WeatherCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Text('Hello world'),
+      color: Colors.green,
+      child: Text(widget.weather.weather),
     );
   }
 }

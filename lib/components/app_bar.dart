@@ -23,7 +23,7 @@ class _CustomAppBar extends State<CustomAppBar> {
     return AppBar(
       backgroundColor: Colors.transparent,
       iconTheme: const IconThemeData(
-        color: Colors.white
+        color: Color.fromARGB(99, 31, 20, 78)
       ),
       actions: [
         Expanded(
@@ -37,7 +37,7 @@ class _CustomAppBar extends State<CustomAppBar> {
                   widget.title ?? "",
                   style: const TextStyle(
                     fontSize: 24,
-                    color: Colors.white
+                    color: Color.fromARGB(99, 31, 20, 78)
                   ),
                 ),
               ),
@@ -49,7 +49,7 @@ class _CustomAppBar extends State<CustomAppBar> {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(50)),
                   border: Border.all(
-                    color: Colors.white,
+                    color: const Color.fromARGB(99, 31, 20, 78),
                     width: 2,
                   )
                 ),
@@ -60,7 +60,7 @@ class _CustomAppBar extends State<CustomAppBar> {
                   },
                   icon: const Icon(
                     Icons.person,
-                    color: Colors.white,
+                    color: Color.fromARGB(99, 31, 20, 78),
                     size: 24,
                   ),
                 ),

@@ -6,9 +6,11 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.title,
+    this.color,
   });
 
   final String? title;
+  final Color? color;
 
   @override
   State<CustomAppBar> createState() => _CustomAppBar();
@@ -22,8 +24,8 @@ class _CustomAppBar extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      iconTheme: const IconThemeData(
-        color: Color.fromARGB(99, 31, 20, 78)
+      iconTheme: IconThemeData(
+        color: widget.color,
       ),
       actions: [
         Expanded(
@@ -35,9 +37,10 @@ class _CustomAppBar extends State<CustomAppBar> {
                 padding: const EdgeInsets.only(left: 60),
                 child: Text(
                   widget.title ?? "",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 24,
-                    color: Color.fromARGB(99, 31, 20, 78)
+                    fontWeight: FontWeight.w400,
+                    color: widget.color
                   ),
                 ),
               ),
@@ -49,7 +52,7 @@ class _CustomAppBar extends State<CustomAppBar> {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(50)),
                   border: Border.all(
-                    color: const Color.fromARGB(99, 31, 20, 78),
+                    color: widget.color ?? const Color.fromARGB(255, 48, 48, 48),
                     width: 2,
                   )
                 ),
@@ -58,9 +61,9 @@ class _CustomAppBar extends State<CustomAppBar> {
                   onPressed: () {
                     print('hello world');
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.person,
-                    color: Color.fromARGB(99, 31, 20, 78),
+                    color: widget.color,
                     size: 24,
                   ),
                 ),

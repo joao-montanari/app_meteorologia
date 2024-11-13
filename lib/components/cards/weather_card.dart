@@ -1,4 +1,7 @@
 import 'package:app_meteorologia/models/weather.dart';
+import 'package:app_meteorologia/screens/weather_specification.dart';
+import 'package:app_meteorologia/utils/design_weather.dart';
+import 'package:app_meteorologia/utils/navigator.dart';
 import 'package:flutter/material.dart';
 
 class WeatherCard extends StatefulWidget {
@@ -14,40 +17,6 @@ class WeatherCard extends StatefulWidget {
 }
 
 class _WeatherCard extends State<WeatherCard> {
-  List<Map<String, dynamic>> weatherDesign = [
-    {
-      "key" : "Chuva",
-      "color" : const Color.fromARGB(1000, 59, 93, 139),
-      "textColor" : const Color.fromARGB(1000, 97, 128, 165),
-    },
-    {
-      "key" : "Chuva com trovoadas",
-      "color" : const Color.fromARGB(1000, 242, 191, 38),
-      "textColor" : const Color.fromARGB(1000, 245, 204, 91),
-    },
-    {
-      "key" : "Sol",
-      "color" : const Color.fromARGB(1000, 242, 130, 119),
-      "textColor" : const Color.fromARGB(1000, 248, 166, 158),
-    },
-    {
-      "key" : "Nublado",
-      "color" : const Color.fromARGB(1000, 102, 181, 175),
-      "textColor" : const Color.fromARGB(1000, 149, 203, 200),
-    },
-  ];
-
-  Map<String, dynamic> findDesign(String weather) {
-    Map<String, dynamic> result = {};
-
-    for (int index = 0; index < weatherDesign.length; index++) {
-      if(weatherDesign[index]["key"] == weather) {
-        result = weatherDesign[index];
-      }
-    }
-
-    return result;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +25,13 @@ class _WeatherCard extends State<WeatherCard> {
       shadowColor: Colors.grey[400],
       elevation: 3,
       child: InkWell(
+        onTap: () => navigatorPage(
+          context,
+          WeatherSpecificationPage(
+            weather: widget.weather,
+          ),
+          Operations.push,
+        ),
         child: Row(
           children: [
             Expanded(
@@ -69,41 +45,51 @@ class _WeatherCard extends State<WeatherCard> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: findDesign(widget.weather.weather)["textColor"]
+                        color: findDesign(widget.weather.weather).textColor
                       ),
                     ),
                     Text(
                       widget.weather.city,
                       style: TextStyle(
                         fontSize: 20,
-                        color: findDesign(widget.weather.weather)["textColor"]
+                        color: findDesign(widget.weather.weather).textColor
                       ),
                     ),
                     Text(
                       widget.weather.weather,
                       style: TextStyle(
                         fontSize: 16,
-                        color: findDesign(widget.weather.weather)["textColor"]
+                        color: findDesign(widget.weather.weather).textColor
                       ),
                     ),
                   ],  
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Text(
+                "${widget.weather.temperature.round()}º",
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w500,
+                  color: findDesign(widget.weather.weather).color
+                ),
+              ),
+            ),
             Container(
               height: 120,
               width: 120,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: findDesign(widget.weather.weather)["color"],
+                color: findDesign(widget.weather.weather).color,
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10),
                 ),
               ),
               child: Image.asset(
-                "../../../assets/images/chuva.png",
-                width: 50,
-                height: 50,
+                findDesign(widget.weather.weather).iconImage,
               ),
             )
           ],
